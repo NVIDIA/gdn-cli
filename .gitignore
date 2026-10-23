@@ -1,0 +1,42 @@
+# Build output
+/bin/
+/dist/
+/gdn
+
+# CI GOPATH cache. Must live under the project dir for GitLab caching, and
+# GoReleaser refuses to release from a tree with untracked files.
+/.go-cache/
+
+# Cross-compiled Windows binaries copied for distribution
+/windows/*.exe
+
+# Scratch / temp artifacts (never committed)
+/tmp/
+
+# Local vendored dependencies for offline work. Do not commit.
+/vendor/
+
+# Local env / secrets (never commit)
+.env*
+*.local.yaml
+*.local.toml
+
+# Perf benchmark downloads, datasets, and result CSVs
+/test/perf/bin/
+/test/perf/data/
+/test/perf/results/
+
+# Python bytecode (perf report helpers, config readers)
+__pycache__/
+*.py[cod]
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Vim swap and backup files. The swap suffix walks backwards from .swp as more
+# files are opened at once, so match the whole range rather than .swp alone.
+*.sw[a-p]
+*~

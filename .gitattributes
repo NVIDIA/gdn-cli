@@ -1,0 +1,40 @@
+# Normalize line endings on commit; check out text with LF.
+* text=auto eol=lf
+
+# Scripts must always use LF, regardless of platform.
+*.sh text eol=lf
+*.ps1 text eol=lf
+
+# Treat known binaries as binary (never touch line endings).
+*.exe binary
+bin/gdn binary
+
+# ── Public release exclusions ─────────────────────────────────────────────────
+# scripts/promote-to-github.sh exports the tree with `git archive`, which honors
+# export-ignore. Anything listed here is internal-only and never reaches
+# https://github.com/NVIDIA/gdn-cli. The promotion script also greps the export
+# for references to these paths and fails if any survive, so if you add an entry
+# here, remove the references to it from README.md and Makefile too.
+#
+# Directories are listed twice on purpose: a gitattributes pattern that matches a
+# directory does not recursively apply to paths inside it, so the `/**` form is
+# what guarantees the contents are excluded too.
+.gitlab-ci.yml                     export-ignore
+.goreleaser.yaml                   export-ignore
+sonar-project.properties           export-ignore
+test/e2e                           export-ignore
+test/e2e/**                        export-ignore
+test/perf                          export-ignore
+test/perf/**                       export-ignore
+make/e2e.mk                        export-ignore
+make/perf.mk                       export-ignore
+docs/internal                      export-ignore
+docs/internal/**                   export-ignore
+scripts/release                    export-ignore
+scripts/release/**                 export-ignore
+scripts/test-lib.sh                export-ignore
+scripts/promote-to-github.sh       export-ignore
+scripts/e2e-cleanup.sh             export-ignore
+scripts/create-app-upload.sh       export-ignore
+scripts/delete-resources-except.sh export-ignore
+scripts/upload-test.sh             export-ignore
